@@ -18,7 +18,7 @@ public class Tests {
         tasks.appendTask("Wash Laundry");
         Assert.assertEquals("Wash Laundry", tasks.getTask(2));
         tasks.appendTask("Take train ticket");
-        Assert.assertEquals(3,tasks.getSize());
+        Assert.assertEquals(3,tasks.getTasksNumber());
 
         //Reorder test : see if the task is correctly re-prioritized
         tasks.appendTask("Shop groceries");
@@ -43,9 +43,9 @@ public class Tests {
         tasks.removeTask(4);
         Assert.assertEquals("Take train ticket", tasks.getTask(4));
         Assert.assertEquals("Pass technical test", tasks.getTask(5));
-        Assert.assertEquals(5, tasks.getSize());
+        Assert.assertEquals(5, tasks.getTasksNumber());
         tasks.removeTask(5);
-        Assert.assertEquals(4, tasks.getSize());
+        Assert.assertEquals(4, tasks.getTasksNumber());
 
         //HasTask test : see if the task exists already
         Assert.assertEquals(true, tasks.hasTask("Buy Milk"));
