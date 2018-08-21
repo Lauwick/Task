@@ -50,5 +50,90 @@ public class Tests {
         //HasTask test : see if the task exists already
         Assert.assertEquals(true, tasks.hasTask("Buy Milk"));
         Assert.assertEquals(false, tasks.hasTask("Playing video games"));
+
+        //Out of bounds tests
+        try {
+            tasks.addTask(25, "Learning math");
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
+
+        try {
+            tasks.addTask(-2, "Learning math");
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
+
+        try {
+            tasks.changeTask(25, "Learning math");
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
+
+        try {
+            tasks.changeTask(-25, "Learning math");
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
+
+        try {
+            tasks.removeTask(25);
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
+
+        try {
+            tasks.removeTask(-25);
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
+
+        try {
+            tasks.getTask(25);
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
+
+        try {
+            tasks.getTask(-25);
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
+
+        try {
+            tasks.reorderTask(25, 3);
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
+
+        try {
+            tasks.reorderTask(-25, 3);
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
+
+        try {
+            tasks.reorderTask(2, 30);
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
+
+        try {
+            tasks.reorderTask(2, 30);
+            Assert.fail();
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.info("Successfully caught exception : " + e.getMessage());
+        }
     }
 }

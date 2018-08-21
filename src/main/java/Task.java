@@ -10,12 +10,12 @@ public class Task {
     }
 
     //Insert task in middle of list, change other priorities accordingly
-    public void addTask(int number, String name){
-        if (number > taskList.size() + 1 || number <= 0){
-            throw new IndexOutOfBoundsException();
+    public void addTask(int priority, String name){
+        if (priority > taskList.size() + 1 || priority <= 0){
+            throw new IndexOutOfBoundsException("Task priority " + priority + " is invalid");
         } else {
             taskList.put(taskList.size() + 1, name);
-            reorderTask(taskList.size(), number);
+            reorderTask(taskList.size(), priority);
         }
     }
 
@@ -25,33 +25,33 @@ public class Task {
     }
 
     //Change task description
-    public void changeTask(int number, String newName){
-        if (taskList.containsKey(number) == false){
-            throw new IndexOutOfBoundsException();
+    public void changeTask(int priority, String newName){
+        if (taskList.containsKey(priority) == false){
+            throw new IndexOutOfBoundsException("Task priority " + priority + " is invalid");
         } else {
-            taskList.put(number, newName);
+            taskList.put(priority, newName);
         }
     }
 
     //Remove task and change priorities accordingly
-    public void removeTask(int number) {
-        if (taskList.containsKey(number) == false){
-            throw new IndexOutOfBoundsException();
+    public void removeTask(int priority) {
+        if (taskList.containsKey(priority) == false){
+            throw new IndexOutOfBoundsException("Task priority " + priority + " is invalid");
         } else {
-            while (number < taskList.size()) {
-                taskList.put(number, taskList.get(number + 1));
-                number++;
+            while (priority < taskList.size()) {
+                taskList.put(priority, taskList.get(priority + 1));
+                priority++;
             }
             taskList.remove(taskList.size());
         }
     }
 
     //Return task description
-    public String getTask(int number) {
-        if (taskList.containsKey(number) == false){
-            throw new IndexOutOfBoundsException();
+    public String getTask(int priority) {
+        if (taskList.containsKey(priority) == false){
+            throw new IndexOutOfBoundsException("Task priority " + priority + " is invalid");
         } else {
-            return taskList.get(number);
+            return taskList.get(priority);
         }
     }
 
@@ -70,24 +70,24 @@ public class Task {
     }
 
     //Change the priority of a task
-    public void reorderTask(int oldNumber, int newNumber){
-        if (taskList.containsKey(oldNumber) == false || taskList.containsKey(newNumber) == false){
-            throw new IndexOutOfBoundsException();
+    public void reorderTask(int oldpriority, int newpriority){
+        if (taskList.containsKey(oldpriority) == false || taskList.containsKey(newpriority) == false){
+            throw new IndexOutOfBoundsException("Task priorities are invalid");
         } else {
-            int highNumber = Math.max(oldNumber, newNumber);
-            int lowNumber = Math.min(oldNumber, newNumber);
-            while (lowNumber < highNumber) {
-                swapTasks(highNumber, lowNumber);
-                lowNumber++;
+            int highPriority = Math.max(oldpriority, newpriority);
+            int lowPriority = Math.min(oldpriority, newpriority);
+            while (lowPriority < highPriority) {
+                swapTasks(highPriority, lowPriority);
+                lowPriority++;
             }
 
         }
     }
 
-    private void swapTasks(int firstNumber, int secondNumber){
-        String firstTask = taskList.get(firstNumber);
-        String secondTask = taskList.get(secondNumber);
-        taskList.put(firstNumber, secondTask);
-        taskList.put(secondNumber, firstTask);
+    private void swapTasks(int firstPriority, int secondPriority){
+        String firstTask = taskList.get(firstPriority);
+        String secondTask = taskList.get(secondPriority);
+        taskList.put(firstPriority, secondTask);
+        taskList.put(secondPriority, firstTask);
     }
 }
